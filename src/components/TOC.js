@@ -1,11 +1,16 @@
 import React, {Component} from "react";
 
 class TOC extends Component {
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        console.log("==>TOC render shouldComponentUpdate", nextProps.data, this.props.data);
+        return this.props.data !== nextProps.data;
+    }
+
     render() {
-        console.log('TOC render')
-        var lists = [];
-        var data = this.props.data;
-        var i = 0;
+        console.log('==>TOC render');
+        let lists = [];
+        let data = this.props.data;
+        let i = 0;
         while (i < data.length) {
             lists.push(<li key={data[i].id}><a
                 href={"/content/" + data[i].id}
